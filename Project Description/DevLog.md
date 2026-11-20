@@ -734,7 +734,8 @@ pm install if package-lock normalization is needed; no functional logic changes 
   - Added dark-mode overrides in client/src/components/auth/auth.css and client/src/components/layout/public-layout.css for authentication surfaces and public header/footer treatments.
 - **Files:** client/src/context/ThemeContext.tsx (new), client/src/main.tsx, client/src/App.tsx, client/src/components/layout/PublicLayout.tsx, client/src/components/layout/DashboardLayout.tsx, client/src/index.css, client/src/components/auth/auth.css, client/src/components/layout/public-layout.css, Project Description/ProjectState.md, Project Description/DevLog.md.
 - **Status:** Completed.
-- **Verification:** cd client && npx tsc -b --pretty false -> passed. cd client && npm run lint -> passed with pre-existing oxlint warnings only, plus src/context/ThemeContext.tsx eact(only-export-components) warning consistent with existing AuthContext pattern (no lint errors). Full client build/test suite not rerun in this task.
+- **Verification:** cd client && npx tsc -b --pretty false -> passed. cd client && npm run lint -> passed with pre-existing oxlint warnings only, plus src/context/ThemeContext.tsx 
+eact(only-export-components) warning consistent with existing AuthContext pattern (no lint errors). Full client build/test suite not rerun in this task.
 - **Notes:** Dark theme prioritizes dark blue/gray surfaces and accents while preserving existing brand structure and role-based layouts. Some page-specific hardcoded colors may still need incremental refinement in follow-up UI passes; backend behavior unchanged.
 
 ### [2026-11-16] - Dark Mode Visibility Tweak
@@ -761,7 +762,8 @@ pm install if package-lock normalization is needed; no functional logic changes 
 - **Files:** `server/src/modules/chargingSessions/{model,service,controller,routes,validation}.ts` (new), `server/src/routes/index.ts`, `server/src/modules/payments/service.ts`, `client/src/services/chargingSessions.ts` (new), `client/src/pages/supplier/BookingRequestsPage.tsx`, `client/src/pages/customer/MyBookingsPage.tsx`, `Project Description/ProjectState.md`, `Project Description/DevLog.md`.
 - **Status:** Completed (integrated into existing architecture; existing core flows preserved).
 - **Verification:** `cd server; npx tsc --noEmit` -> passed. `cd server; npx vitest run tests/booking.workflow.test.ts tests/payments.earnings.test.ts tests/e2e.journey.test.ts` -> 3 files, 9 tests passed. `cd client; npx tsc -b` -> passed (after removing unused import). `cd client; npm run build` -> passed (Vite chunk-size warning pre-existing). Full regression suite and live DB/manual E2E not rerun in this session.
-- **Notes:** Charging session billing is now calculated server-side from SOC and station rate snapshot at completion; session bill payments reuse existing booking payment endpoints/flow. "Station worker" actions are exposed through the supplier booking/session interface with supplier ownership authorization. Further UX/policy alignment (e.g. whether pre-accept payment is required before session start in all deployments) may be refined based on operational policy.
+- **Notes:** Charging session billing is now calculated server-side from SOC and station rate snapshot at completion; session bill payments reuse existing booking payment endpoints/flow. "Station worker" actions are exposed through the supplier booking/session interface with supplier ownership authorization. Further UX/policy alignment (e.g. whether pre-accept payment is required before session start in all deployments) may be refined based on operational policy.
+
 
 ### [2026-11-16] - Landing Page: Remove Driver and Station Sections
 
@@ -770,4 +772,4 @@ pm install if package-lock normalization is needed; no functional logic changes 
 - **Files:** client/src/pages/public/LandingPage.tsx, client/src/components/layout/PublicLayout.tsx, Project Description/ProjectState.md, Project Description/DevLog.md.
 - **Status:** Completed.
 - **Verification:** cd client; npx tsc -b --pretty false -> passed. cd client; npx oxlint src/pages/public/LandingPage.tsx src/components/layout/PublicLayout.tsx -> 1 pre-existing warning in PublicLayout.tsx (set-state-in-effect, not introduced by this change). Build/test suite not rerun.
-- **Notes:** Home page now retains hero, how-it-works, about/help, and closing CTA sections. Former /#for-customers and /#for-suppliers anchors/sections no longer exist on the landing page.
+- **Notes:** Home page now retains hero, how-it-works, about/help, and closing CTA sections. Former /#for-customers and /#for-suppliers anchors/sections no longer exist on the landing page...
